@@ -25,3 +25,23 @@ var hasCycle_v2 = (head) =>{
     }
     return false;
 }
+//使用快慢指针找到环形链表的起点
+var findStart = (head) => {
+    let dummyHead = new NodeList()
+    let fast = slow = dummyHead
+    dummyHead.next = head
+    if(fast.next == null &&fast.next.next == null) return null
+    while( fast && fast.next){
+        slow = slow.next
+        fast = fast.next.next
+        if( fast == slow ){
+            let p = dummyHead.next
+            while(p !== slow){
+                p = p.next
+                slow = slow.next
+            }
+            return p;
+        }
+    }
+    return null;
+}
