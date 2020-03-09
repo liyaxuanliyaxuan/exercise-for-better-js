@@ -1,4 +1,4 @@
-var kGroupReverse = (head, k) =>{
+var kGroupReverse = function(head, k){
     let count = 0
     let p = dummyHead = new NodeList()
     dummyHead.next = head
@@ -8,7 +8,7 @@ var kGroupReverse = (head, k) =>{
     }
     let loop = Math.floor(count/k);
     for(let i = 0;i<loop;i++){
-        let pre = null, cur = p.next
+        let pre = null, cur = p.next//head
         for(let j = 0;j<k;j++){
             let next = cur.next
             cur.next = pre
@@ -18,7 +18,7 @@ var kGroupReverse = (head, k) =>{
         let start = p.next
         p.next = pre
         start.next = cur
-        p = start
+        p = start//p和dummyHead分离  
     }
     return dummyHead.next
 }
