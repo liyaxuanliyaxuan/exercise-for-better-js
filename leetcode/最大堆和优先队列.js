@@ -118,3 +118,32 @@ class MaxHeap {
   //优先队列，进队列进行堆排序，得到一个按照优先级排序的状态队列（大顶堆）
   //优先队列，出队列，取出队首元素，也就是优先级最大的元素
   //优先队列的应用，前K个高频元素
+var topKfrequent = (nums, k)=>{
+    let map = {}
+    let pq = new PriorityQueue(k, (a,b)=>map[a]-map[b]<0)
+    for(let i = 0; i < nums.length; i++){
+        if(!map[nums[i]]) map[nums[i]] = 1;
+        else map[nums[i]] = map[nums[i]]++;
+    }
+    let arr = Array.from(new Set(nums));
+    for(let i = 0; i < arr.length; i++){
+        pq.enqueue(arr[i]);
+    }
+    return pq.maxHeap.data;
+}
+//使用优先队列合并K个有序链表
+var mergeKLists = (lists) => {
+    var dummyHead = p = new NodeList()
+    let pq = new PriorityQueue(lists.length,(a,b)=> a.val<=b.val);
+    for(let i = 0; i < lists.length; i++){
+        pq.enqueue(lists[i])
+    }
+    while(pq.getSize()){
+        let min = pq.dequeue
+        p.next = min;
+        p = p.next;
+        if(min.next) pq.enqueue(min.next)
+    }
+    return dummyHead.next;
+
+}
